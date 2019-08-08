@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Buku;
 use App\Kategori;
+use App\Buku_Kategori;
 
 class BukuController extends Controller
 {
@@ -15,7 +16,7 @@ class BukuController extends Controller
     public function index(){
         // $data['buku']=Buku::all();
         // $data['kategori']=Kategori::all();
-        $buku = Buku::with('kategori')->get();
+        $buku = Buku::with('kategori')->orderBy('id','DESC')->get();
         // $data['judul']='List Data Buku';
         // return view('admin.adminBukuList',$data);
         return view('admin.adminBukuList',compact('buku'));
@@ -66,9 +67,13 @@ class BukuController extends Controller
         $buku->bukuStok=$input['bukuStok'];
         $buku->bukuFoto=$input['bukuFoto'];
         $buku->save();
-        $kategori = Kategori::find([$input['kategori_id']]);
-        $status=$buku->kategori()->attach($kategori);
 
+        foreach($input['kategori_id'] as $id_kategori){ //disini insert ke bukukategori
+            $buku_kategori= new Buku_Kategori;
+            $buku_kategori->kategori_id= $id_kategori;
+            $buku_kategori->buku_id= $buku->id;
+            $status=$buku_kategori->save();
+        }
                 if($status){
                     return redirect('admin/buku')->with('success','Data berhasil ditambahkan ');
                 } else {
@@ -78,11 +83,22 @@ class BukuController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $data['judul']='Edit Data Buku';
+        // $data['judul']='Edit Data Buku';
         // $data['buku']=Buku::find($id);
-        $buku = Buku::find($id)->with('kategori')->get();
+        $data['kategori']=Kategori::all();
+
+        // $data['judul']='Tambah Data Buku Baru';
+        // return view('admin.adminBukuAdd',$data);
+
+        $buku = Buku::with('kategori')->where('id',$id)->first();
+        $idKategoriArr = [];
+        foreach($buku->kategori as $i => $k){
+            $idKategoriArr[$i] = $k->id;
+        }
+        $data['idKategori'] = $idKategoriArr;
+        // $buku = Buku::with('kategori')->find($id)->get();
         // return view('admin.adminBukuEdit',$data);
-        return view('admin.adminBukuList',compact('buku'));
+        return view('admin.adminBukuEdit',compact('buku'),$data);
     }
 
     public function update(Request $request, $id)
@@ -116,7 +132,7 @@ class BukuController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $kategori= \App\Buku::find($id);
+        $buku= \App\Buku::find($id);
         $status=$buku->delete();
         // untuk status apakah sudah sukses dihapus data apa belum
         if($status){

@@ -12,7 +12,7 @@
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item active">List Buku</li>
-                  <li class="breadcrumb-item"><a href="buku/create">Tambah Data</a></li>
+                  <li class="breadcrumb-item"><a href="create">Tambah Data</a></li>
                 </ol>
               </div>
             </div>
@@ -41,7 +41,7 @@
                                 <div class="card-header">
                                   <div class="row">
                                     <div class="col-md-6"><h3 class="card-title">List Data Buku</h3></div>
-                                    <div class="col-md-6"><a href="buku/create"><button class="btn btn-primary float-right">Tambah Data</button></a></div>
+                                    <div class="col-md-6"><a href="create"><button class="btn btn-primary float-right">Tambah Data</button></a></div>
                                   </div>
                                 </div>
                                 <!-- /.card-header -->
@@ -77,7 +77,7 @@
                                           <td>
                                               <a href="{{ url('/admin/buku/' . $b->id . '/edit') }}"><button type="button" class="btn btn-success" style="text-align:center"><i class="fa fa-edit"></i></button></a>
                                           </td>
-                                          <td><form action="{{ url('/admin/buku/', $b->id)}}" method="POST">
+                                          <td><form action="{{ url('/admin/buku', $b->id)}}" method="POST">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn btn-danger" style="text-align:center"><i class="fa fa-trash"></i></button>

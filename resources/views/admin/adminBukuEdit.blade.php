@@ -12,7 +12,7 @@
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class=""><a href="">List Buku</a></li> / 
-                  <li class="breadcrumb-item active">Tambah Data</li>
+                  <li class="breadcrumb-item active">Edit Data</li>
                 </ol>
               </div>
             </div>
@@ -41,30 +41,34 @@
                             <!-- general form elements -->
                             <div class="card card-primary">
                                 <div class="card-header">
-                                  <h3 class="card-title">{{$judul}}</h3>
+                                  <h3 class="card-title">Edit Data Buku</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
-                                <form method="post" action="/admin/buku/store" enctype="multipart/form-data">
-                                  @csrf
+                                <form action="{{url('admin/buku', @$buku->id)}}" method="POST">
+                                    @csrf
+    
+                                    @if(!empty($buku))
+                                        @method('PATCH')
+                                    @endif
                                   <div class="card-body">
                                     {{-- JUDUL --}}
                                     <div class="form-group">
                                       <label for="">Judul Buku</label>
-                                      <input type="text" class="form-control" id="bukuNama" placeholder="Judul Buku Baru" name="bukuNama">
+                                      <input type="text" class="form-control" id="bukuNama" placeholder="Judul Buku Baru" name="bukuNama" value="{{ old('bukuNama', @$buku->bukuNama) }}">
                                     </div>
                                     {{-- PENULIS DAN PENERBIT --}}
                                     <div class="row">
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <label for="">Penulis Buku</label>
-                                              <input type="text" class="form-control" id="bukuPenulis" placeholder="Penulis Buku" name="bukuPenulis">
+                                              <input type="text" class="form-control" id="bukuPenulis" placeholder="Penulis Buku" name="bukuPenulis" value="{{ old('bukuPenulis', @$buku->bukuPenulis) }}">
                                             </div>
                                       </div>
                                       <div class="col-md-6">
                                           <div class="form-group">
                                               <label for="">Penerbit Buku</label>
-                                              <input type="text" class="form-control" id="bukuPenerbit" placeholder="Penerbit Buku" name="bukuPenerbit">
+                                              <input type="text" class="form-control" id="bukuPenerbit" placeholder="Penerbit Buku" name="bukuPenerbit" value="{{ old('bukuPenerbit', @$buku->bukuPenerbit) }}">
                                             </div>
                                       </div>
                                     </div>
@@ -75,7 +79,7 @@
                                                 <label for="">Upload Foto Buku</label>
                                                 <div class="input-group">
                                                     <input type="file" class="custom-file-input" id="bukuFoto" name="bukuFoto">
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label">{{ old('bukuFoto', @$buku->bukuFoto) }}</label>
                                                 </div>
                                               </div>
                                         </div>
@@ -86,7 +90,7 @@
                                                     <div class="input-group-prepend">
                                                       <span class="input-group-text">Rp.</span>
                                                     </div>
-                                                    <input type="numeric" class="form-control" id="bukuHarga" name="bukuHarga">
+                                                    <input type="numeric" class="form-control" id="bukuHarga" name="bukuHarga" value="{{ old('bukuHarga', @$buku->bukuHarga) }}">
                                                     <div class="input-group-append">
                                                       <span class="input-group-text">.00</span>
                                                     </div>
@@ -97,7 +101,7 @@
                                             <div class="form-group">
                                                 <label for="exampleInputPassword1">Stok Buku</label>
                                                 <div class="input-group">
-                                                    <input type="numeric" class="form-control" id="bukuStok" name="bukuStok">
+                                                    <input type="numeric" class="form-control" id="bukuStok" name="bukuStok" value="{{ old('bukuStok', @$buku->bukuStok) }}">
                                                     <div class="input-group-append">
                                                       <span class="input-group-text">pcs</span>
                                                     </div>
@@ -110,7 +114,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Sinopsis Buku</label>
-                                                <textarea class="form-control" rows="4" placeholder="Masukan Sinopsis/Deskripsi Buku" id="bukuDeskripsi" name="bukuDeskripsi"></textarea>
+                                                <textarea class="form-control" rows="4" placeholder="Masukan Sinopsis/Deskripsi Buku" id="bukuDeskripsi" name="bukuDeskripsi">{{ old('bukuStok', @$buku->bukuStok) }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -118,7 +122,7 @@
                                                 <label>Kategori</label>
                                                 <select multiple class="form-control" id="kategori_id[]" name="kategori_id[]">
                                                   @foreach ($kategori as $k)
-                                                    <option value="{{$k->id}}">
+                                                    <option value="{{$k->id}}" {{ @in_array($k->id,@$idKategori) ? 'selected' : '' }}>
                                                       {{$k->kategoriNama}}
                                                     </option>
                                                   @endforeach
