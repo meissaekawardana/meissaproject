@@ -11,6 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::table('kategoris')->insert([
+            'kategoriNama'=>'Romance'
+        ]);
+        DB::table('kategoris')->insert([
+            'kategoriNama'=>'Fiksi'
+        ]);
+        DB::table('kategoris')->insert([
+            'kategoriNama'=>'Edukasi'
+        ]);
+        DB::table('kategoris')->insert([
+            'kategoriNama'=>'Sejarah'
+        ]);
     }
 }
