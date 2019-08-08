@@ -20,7 +20,6 @@ class BukuController extends Controller
         // return view('admin.adminBukuList',$data);
         return view('admin.adminBukuList',compact('buku'));
     }
-    // }
 
     public function create(){
         $data['buku']=Buku::all();
@@ -31,6 +30,7 @@ class BukuController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request);
         $rule =[
             'bukuNama' => 'required|min: 3',
             'bukuHarga' => 'required|numeric|min: 3',
@@ -38,54 +38,74 @@ class BukuController extends Controller
             'bukuPenulis' => 'string|min: 3',
             'bukuDeskripsi' => 'string|min: 3',
             'bukuStok' => 'required|numeric|min: 3',
-            'bukuFoto' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'bukuFoto' => 'required|image|max:2048',
                 ];
         $this->validate($request,$rule);
         
         $image = $request->file('bukuFoto');
         $newName = rand().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path('bukuFoto'),$newName);
+        $image->move(public_path('images'),$newName);
         $formData = array(
-            'bukuNama' => $request->bukuNama,
-            'bukuHarga' => $request->bukuHarga,
-            'bukuPenerbit' => $request->bukuPenerbit,
-            'bukuPenulis' => $request->bukuPenulis,
+            'bukuNama'      => $request->bukuNama,
+            'bukuHarga'     => $request->bukuHarga,
+            'bukuPenerbit'  => $request->bukuPenerbit,
+            'bukuPenulis'   => $request->bukuPenulis,
             'bukuDeskripsi' => $request->bukuDeskripsi,
-            'bukuStok' => $request->bukuStok,
-            'bukuFoto' => $newName,
-        )
+            'bukuStok'      => $request->bukuStok,
+            'bukuFoto'      => $newName,
+            'kategori_id'   => $request->kategori_id,
+        );
 
-        $input = $request->all();
+        $input = $formData;
+        $buku=new Buku;
+        $buku->bukuNama=$input['bukuNama'];
+        $buku->bukuHarga=$input['bukuHarga'];
+        $buku->bukuPenerbit=$input['bukuPenerbit'];
+        $buku->bukuPenulis=$input['bukuPenulis'];
+        $buku->bukuDeskripsi=$input['bukuDeskripsi'];
+        $buku->bukuStok=$input['bukuStok'];
+        $buku->bukuFoto=$input['bukuFoto'];
+        $buku->save();
+        $kategori = Kategori::find([$input['kategori_id']]);
+        $status=$buku->kategori()->attach($kategori);
 
-        $kategori=new Kategori;
-        $kategori->kategoriNama=$input['kategoriNama'];
-        $status=$kategori->save();
-        
                 if($status){
-                    return redirect('admin/kategori')->with('success','Data berhasil ditambahkan ');
+                    return redirect('admin/buku')->with('success','Data berhasil ditambahkan ');
                 } else {
-                    return redirect('admin/kategori')->with('error','Data Gagal ditambahkan');
+                    return redirect('admin/buku')->with('error','Data Gagal ditambahkan');
                 }
     }
 
     public function edit(Request $request, $id)
     {
-        $data['judul']='Edit Data Kategori';
-        $data['kategori']=Kategori::find($id);
-        return view('admin.adminKategoriEdit',$data);
+        $data['judul']='Edit Data Buku';
+        // $data['buku']=Buku::find($id);
+        $buku = Buku::find($id)->with('kategori')->get();
+        // return view('admin.adminBukuEdit',$data);
+        return view('admin.adminBukuList',compact('buku'));
     }
 
     public function update(Request $request, $id)
     {
         $rule=[
-            'kategoriNama'     =>'required|min: 3',
+            'bukuNama' => 'required|min: 3',
+            'bukuHarga' => 'required|numeric|min: 3',
+            'bukuPenerbit' => 'string|min: 3',
+            'bukuPenulis' => 'string|min: 3',
+            'bukuDeskripsi' => 'string|min: 3',
+            'bukuStok' => 'required|numeric|min: 3',
+            'bukuFoto' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
         ];
         $this->validate($request,$rule);
         $input=$request->all();
         unset($input['_token']);
         unset($input['_method']);
-        $kategori= Kategori::find($id);
-        $status=$kategori->update($input);
+        $buku= Buku::find($id);
+        $buku->update($input);
+
+
+        $kategori = Kategori::find([1,2]);
+        $status=$buku->kategori()->attach($kategori);
         // untuk status apakah sudah sukses diedit data apa belum
         if($status){
             return redirect('admin/kategori')->with('success','Data Berhasil Diubah ');
@@ -96,13 +116,13 @@ class BukuController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $kategori= \App\Kategori::find($id);
-        $status=$kategori->delete();
+        $kategori= \App\Buku::find($id);
+        $status=$buku->delete();
         // untuk status apakah sudah sukses dihapus data apa belum
         if($status){
-            return redirect('admin/kategori')->with('success','Data Berhasil Dihapus ');
+            return redirect('admin/buku')->with('success','Data Berhasil Dihapus ');
         } else {
-            return redirect('admin/kategori')->with('error','Data Gagal Dihapus');
+            return redirect('admin/buku')->with('error','Data Gagal Dihapus');
         }
     }
     // public function create(Request $request){

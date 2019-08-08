@@ -21,6 +21,22 @@
     
         <!-- Main content -->
         <section class="content">
+            @if (session('success'))
+            <div class="alert alert-success">
+              <strong>{{session('success')}}</strong>  
+            </div>
+          @endif
+          @if (count($errors)>0)
+            <div class="alert alert-danger">
+            <br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <strong><li>{{$error}}</li></strong> 
+                @endforeach
+            </ul>
+          </div>
+          @endif
+          
                             <div class="card">
                                 <div class="card-header">
                                   <div class="row">

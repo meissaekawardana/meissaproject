@@ -11,7 +11,7 @@
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                  <li class="admin/buku"><a href="buku">List Buku</a></li> / 
+                  <li class=""><a href="admin/buku">List Buku</a></li> / 
                   <li class="breadcrumb-item active">Tambah Data</li>
                 </ol>
               </div>
@@ -21,6 +21,22 @@
     
         <!-- Main content -->
         <section class="content">
+            @if (session('success'))
+            <div class="alert alert-success">
+              <strong>{{session('success')}}</strong>  
+            </div>
+          @endif
+          @if (count($errors)>0)
+            <div class="alert alert-danger">
+            <br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <strong><li>{{$error}}</li></strong> 
+                @endforeach
+            </ul>
+          </div>
+          @endif
+
           <div class="container-fluid">
                             <!-- general form elements -->
                             <div class="card card-primary">
@@ -29,11 +45,12 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
-                                <form method="post" action="/admin/buku/create">
+                                <form method="post" action="/admin/buku/store" enctype="multipart/form-data">
+                                  @csrf
                                   <div class="card-body">
                                     {{-- JUDUL --}}
                                     <div class="form-group">
-                                      <label for="exampleInputEmail1">Judul Buku</label>
+                                      <label for="">Judul Buku</label>
                                       <input type="text" class="form-control" id="bukuNama" placeholder="Judul Buku Baru" name="bukuNama">
                                     </div>
                                     {{-- PENULIS DAN PENERBIT --}}
@@ -99,9 +116,11 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Kategori</label>
-                                                <select multiple class="form-control" id="kategori_id">
+                                                <select multiple class="form-control" id="kategori_id" name="kategori_id">
                                                   @foreach ($kategori as $k)
-                                                    <option value="{{$k->id}}">{{$k->kategoriNama}}</option>
+                                                    <option value="{{$k->id}}">
+                                                      {{$k->kategoriNama}}
+                                                    </option>
                                                   @endforeach
                                                 </select>
                                               </div>

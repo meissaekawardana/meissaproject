@@ -19,8 +19,6 @@
 
         </section>
 
-        
-
         <!-- Main content -->
                 <!-- Main content -->
                 <section class="content">
@@ -45,7 +43,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{url('admin/kategoriq', @$kategori->id)}}" method="POST">
+                        <form action="{{url('admin/kategori', @$kategori->id)}}" method="POST">
                                 @csrf
 
                                 @if(!empty($kategori))
