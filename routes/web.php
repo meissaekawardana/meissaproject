@@ -25,9 +25,17 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/routes', 'HomeController@admin');
     // buku
     Route::get('admin/buku/', 'BukuController@index');
+    Route::get('admin/buku/{id}/edit', 'KategoriController@edit');
+    Route::patch('admin/buku/{id}', 'KategoriController@update');
+    Route::delete('admin/buku/{id}', 'KategoriController@destroy');
+    Route::post('admin/buku/store', 'KategoriController@store');
     Route::get('admin/buku/create', 'BukuController@create')->name('buku.create');
     //kategori
     Route::get('admin/kategori', 'KategoriController@index');
+    Route::get('admin/kategori/{id}/edit', 'KategoriController@edit');
+    Route::patch('admin/kategori/{id}', 'KategoriController@update');
+    Route::delete('admin/kategori/{id}', 'KategoriController@destroy');
+    Route::post('admin/kategori/store', 'KategoriController@store');
     Route::get('admin/kategori/create', 'KategoriController@create')->name('kategori.create');
 
 });

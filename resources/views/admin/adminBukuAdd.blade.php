@@ -58,7 +58,7 @@
                                                 <label for="">Upload Foto Buku</label>
                                                 <div class="input-group">
                                                     <input type="file" class="custom-file-input" id="bukuFoto" name="bukuFoto">
-                                                    <label class="custom-file-label" for="">Choose file</label>
+                                                    <label class="custom-file-label" >Choose file</label>
                                                 </div>
                                               </div>
                                         </div>
@@ -100,11 +100,9 @@
                                             <div class="form-group">
                                                 <label>Kategori</label>
                                                 <select multiple class="form-control" id="kategori_id">
-                                                  <option value="{{$kategori}}">option 1</option>
-                                                  <option>option 2</option>
-                                                  <option>option 3</option>
-                                                  <option>option 4</option>
-                                                  <option>option 5</option>
+                                                  @foreach ($kategori as $k)
+                                                    <option value="{{$k->id}}">{{$k->kategoriNama}}</option>
+                                                  @endforeach
                                                 </select>
                                               </div>
                                         </div>
@@ -120,49 +118,5 @@
                                 </form>
                               </div>
                               <!-- /.card -->
-
-
-                            <div class="card">
-                                <div class="card-header">
-                                  <h3 class="card-title">DataTable with default features</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                  <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Judul Buku</th>
-                                        <th>Harga Buku</th>
-                                        <th>Foto Buku</th>
-                                        {{-- <th>Kategori</th> --}}
-                                        <th>Penulis</th>
-                                        <th>Penerbit</th>
-                                        <th>Sinopsis</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                      @foreach ($buku as $b)
-                                      <tr>
-                                          <td>{{$b->bukuNama}}</td>
-                                          <td>{{$b->bukuHarga}}</td>
-                                          <td>{{$b->bukuFoto}}</td>
-                                          {{-- <td>{{$buku->bukuKategori}}</td> --}}
-                                          <td>{{$b->bukuPenulis}}</td>
-                                          <td>{{$b->bukuPenerbit}}</td>
-                                          <td>{{$b->bukuDeskripsi}}</td>
-                                        </tr>
-                                      @endforeach
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                    </tr>
-                                    </tfoot>
-                                  </table>
-                                </div>
-                                <!-- /.card-body -->
-                              </div>
-                              <!-- /.card -->
-                              <!-- jQuery -->
-
 
 @endsection

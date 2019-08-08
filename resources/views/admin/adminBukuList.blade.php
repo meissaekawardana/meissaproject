@@ -11,7 +11,7 @@
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item active">List Buku</li> /
+                  <li class="breadcrumb-item active">List Buku</li>
                   <li class="breadcrumb-item"><a href="buku/create">Tambah Data</a></li>
                 </ol>
               </div>
@@ -23,7 +23,10 @@
         <section class="content">
                             <div class="card">
                                 <div class="card-header">
-                                  <h3 class="card-title">List Data Buku</h3>
+                                  <div class="row">
+                                    <div class="col-md-6"><h3 class="card-title">List Data Buku</h3></div>
+                                    <div class="col-md-6"><a href="buku/create"><button class="btn btn-primary float-right">Tambah Data</button></a></div>
+                                  </div>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -37,6 +40,8 @@
                                         <th>Penulis</th>
                                         <th>Penerbit</th>
                                         <th>Sinopsis</th>
+                                        <th>Action Edit</th>
+                                        <th>Action Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -46,15 +51,21 @@
                                           <td>{{($b->bukuHarga)}}</td>
                                           <td>{{$b->bukuFoto}}</td>
                                           <td>
-                                            {{$b->kategori->kategoriNama}}
                                             @foreach($b->kategori as $k)
-                                              {{ $k->kategoriName }}
+                                              {{ $k->kategoriNama }} <br>
                                             @endforeach
                                           </td>
-                                          <td>{{$buku->bukuKategori}}</td>
                                           <td>{{$b->bukuPenulis}}</td>
                                           <td>{{$b->bukuPenerbit}}</td>
                                           <td>{{$b->bukuDeskripsi}}</td>
+                                          <td>
+                                              <a href="{{ url('/admin/buku/' . $b->id . '/edit') }}"><button type="button" class="btn btn-success" style="text-align:center"><i class="fa fa-edit"></i></button></a>
+                                          </td>
+                                          <td><form action="{{ url('/admin/buku/', $b->id)}}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger" style="text-align:center"><i class="fa fa-trash"></i></button>
+                                        </form></td>
                                         </tr>
                                       @endforeach
                                     </tbody>
