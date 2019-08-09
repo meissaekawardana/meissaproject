@@ -11,7 +11,7 @@
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                  <li class=""><a href="">List Buku</a></li> / 
+                  <li class=""><a href="{{route('admin.buku')}}">List Buku</a></li> / 
                   <li class="breadcrumb-item active">Edit Data</li>
                 </ol>
               </div>
@@ -114,7 +114,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Sinopsis Buku</label>
-                                                <textarea class="form-control" rows="4" placeholder="Masukan Sinopsis/Deskripsi Buku" id="bukuDeskripsi" name="bukuDeskripsi">{{ old('bukuStok', @$buku->bukuStok) }}</textarea>
+                                                <textarea class="form-control" rows="4" placeholder="Masukan Sinopsis/Deskripsi Buku" id="bukuDeskripsi" name="bukuDeskripsi">{{ old('bukuDeskripsi', @$buku->bukuDeskripsi) }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-4">

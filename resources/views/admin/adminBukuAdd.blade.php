@@ -11,7 +11,7 @@
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                  <li class=""><a href="">List Buku</a></li> / 
+                  <li class=""><a href="{{route('admin.buku')}}">List Buku</a></li> / 
                   <li class="breadcrumb-item active">Tambah Data</li>
                 </ol>
               </div>
@@ -45,7 +45,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
-                                <form method="post" action="/admin/buku/store" enctype="multipart/form-data">
+                                <form method="post" action="{{route('admin.buku.store')}}" enctype="multipart/form-data">
                                   @csrf
                                   <div class="card-body">
                                     {{-- JUDUL --}}

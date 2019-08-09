@@ -72,7 +72,8 @@
                                               <tr>
                                                 <th>id Kategori</th>
                                                 <th>Nama Kategori</th>
-                                                <th>Action</th>
+                                                <th>Action Edit</th>
+                                                <th>Action Delete</th>
                                             </tr>
                                             </thead>
                                             <tbody>

@@ -23,11 +23,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['buku'] = Buku::with('kategori')->orderBy('id','DESC')->get();
+        $data['kategori']=Kategori::all();
+        $data['judul']='Tambah Data Kategori Baru';
+        return view('welcome',$data);
     }
 
     public function admin(){ 
-        return view('admin'); 
+        $data['buku'] = Buku::with('kategori')->orderBy('id','DESC')->get();
+        $data['kategori']=Kategori::all();
+        $data['judul']='Tambah Data Kategori Baru';
+        return view('welcome',$data);
+        // return view('admin'); 
     }
 
 }
