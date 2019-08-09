@@ -97,21 +97,39 @@
 								<span class="icon-bar"></span>
 							</button>
 						</div>
-                    </div>
-
-					{{-- <div class="col-sm-3">
-						<div class="search_box pull-right">
-                            <form action="{{route('cari')}}" method="GET">
-                                <input type="text" name="cari" placeholder="Cari Nama Buku" value="{{ old('cari') }}"/>
-                                <button type="submit" class="btn btn-light" value="CARI"> <i class="fa fa-search"></i> </button>
-                            </form>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a href="index.html" class="active">Home</a></li>
+								<li class="dropdown"><a href="#">Buku<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="{{route('list')}}">Semua Buku</a></li>
+										<li><a href="{{asset('home2/cart.html')}}">Cart</a></li> 
+                                    </ul>
+                                </li> 
+								<li class="dropdown"><a href="#">Kategori<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+											@foreach ($kategori as $k)
+											<li><a href="">{{($k->kategoriNama)}}</a></li>
+											@endforeach
+                                    </ul>
+                                </li> 
+								{{-- <li><a href="{{asset('home2/404.html')}}">404</a></li> --}}
+								<li><a href="{{asset('home2/contact-us.html')}}">Contact</a></li>
+							</ul>
 						</div>
-                    </div> --}}
-                    
-
+					</div>
+					<div class="col-sm-3">
+							<div class="search_box pull-right">
+								<form action="{{route('cari')}}" method="GET">
+									<input type="text" name="cari" placeholder="Cari Nama Buku" value="{{ old('cari') }}"/>
+									<button type="submit" class="btn btn-light" value="CARI"> <i class="fa fa-search"></i> </button>
+								</form>
+							</div>
+						</div>
 				</div>
 			</div>
 		</div><!--/header-bottom-->
+	</header><!--/header-->
     </header><!--/header-->
     
     <section>
@@ -141,16 +159,17 @@
                                 </div>    
                             </div>
                             <div class="col-sm-7">
+                                $bukuId={{$buku->id}}
                                 <div class="product-information"><!--/product-information-->
                                     <img src="images/product-details/new.jpg" class="newarrival" alt="" />
                                     <h2>{{$buku->bukuNama}}</h2>
                                     <span>
                                         <span>Rp. {{$buku->bukuHarga}},00</span>
-                                        <form method="post" action="keranjang/store">
+                                        <form method="post" action="{{route('cart')}}">
                                             @csrf
                                         <label>Quantity :</label>
                                         <input type="numeric" placeholder="3" id="qty" name="qty">
-                                        <input type="hidden" id="id" value="{{$buku->id}}">
+                                        <input type="hidden" id="id" name="id" value="{{$buku->id}}">
                                             <button type="submit" class="btn btn-default cart">
                                             <i class="fa fa-shopping-cart"></i>
                                             Add to cart
@@ -183,71 +202,7 @@
                 </div>
             </div>
         </section>
-	
-	{{-- <section id="slider"><!--slider-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-							<li data-target="#slider-carousel" data-slide-to="1"></li>
-							<li data-target="#slider-carousel" data-slide-to="2"></li>
-						</ol>
-						
-						<div class="carousel-inner">
-								<div class="item active">
-									<div class="col-sm-6">
-										<h1><span>MaLoBo</span>BookStore</h1>
-										<h2>A Lovely Book For A Lovely One</h2>
-										<p>Malobo adalah toko buku online yang menjual berbagai jenis buku spesial untuk kamu yang spesial &#9829; </p>
-											<button type="button" class="btn btn-default get" href="{{ url('/rumah') }}">Dapatkan Sekarang !</button></button>					
-									</div>
-									<div class="col-sm-6">
-										<img src="{{asset('home2/images/home/girl1.jpg')}}" class="girl img-responsive" alt="" />
-									</div>
-								</div>
-								<div class="item">
-									<div class="col-sm-6">
-											<h1><span>MaLoBo</span>BookStore</h1>
-											<h2>A Lovely Book For A Lovely One</h2>
-											<p>Malobo selalu menyediakan buku yang berkualitas untuk kamu yang tercinta &#9829; </p>
-											<button type="button" class="btn btn-default get" href="{{ url('/rumah') }}">Dapatkan Sekarang !</button></button>
-									</div>
-									<div class="col-sm-6">
-										<img src="{{asset('home2/images/home/girl2.jpg')}}" class="girl img-responsive" alt="" />
-									</div>
-								</div>
-								
-								<div class="item">
-									<div class="col-sm-6">
-											<h1><span>MaLoBo</span>BookStore</h1>
-											<h2>A Lovely Book For A Lovely One</h2>
-											<p>Malobo adalah salah satu toko buku online terpecaya yang menyediakan kebutuhan buku untuk kamu yang tercinta &#9829; </p>
-											<button type="button" class="btn btn-default get" href="{{ url('/rumah') }}">Dapatkan Sekarang !</button></button>
-									</div>
-									<div class="col-sm-6">
-										<img src="{{asset('home2/images/home/girl3.jpg')}}" class="girl img-responsive" alt="" />
-									</div>
-								</div>
-								
-							</div>
-						
-						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-							<i class="fa fa-angle-left"></i>
-						</a>
-						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-							<i class="fa fa-angle-right"></i>
-						</a>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section><!--/slider--> --}}
-	
-	
-	
+		
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">

@@ -15,6 +15,12 @@ class CreateBuktiBayarsTable extends Migration
     {
         Schema::create('bukti_bayars', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('namaPenerima');
+            $table->longText('alamatTujuan');
+            $table->integer('noHp');
+            $table->integer('totalTagihan');
+            $table->string('fotoBukti')->nullable();
+            $table->boolean('status');
             $table->timestamps();
         });
     }

@@ -40,6 +40,7 @@ class BarangController extends Controller
         // // return view('user/bukuDetail',compact('buku'),$data);
 
         // dd($buku);
+        $data['kategori']=Kategori::all();
         $buku = Buku::with('kategori')->where('id',$id)->first();
         // dd($buku->bukuFoto);
         $idKategoriArr = [];

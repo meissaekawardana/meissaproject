@@ -127,76 +127,62 @@
 
 
             <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
+                <a href="buku" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
                   <p>
-                    Master
+                    Buku
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="buku" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Buku</p>
-                    </a>
-                  </li>
-                  {{-- <li class="nav-item">
-                    <a href="admin/buku/create">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Create Buku</p>
-                    </a>
-                  </li> --}}
-                  <li class="nav-item">
-                    <a href="kategori" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Kategori</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{asset('template/pages/layout/fixed-sidebar.html')}}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Promo</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{asset('template/pages/layout/fixed-topnav.html')}}" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>User</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="kategori" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                  <p>
+                      Kategori
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+            </li>
+
+                {{-- <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="buku" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Buku</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="kategori" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Kategori</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{asset('template/pages/layout/fixed-sidebar.html')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Promo</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{asset('template/pages/layout/fixed-topnav.html')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>User</p>
+                      </a>
+                    </li>
+                  </ul> --}}
+              {{-- </li> --}}
               {{-- TRANSAKSI img--}}
               <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-edit"></i>
-                  <p>
-                    Transaksi
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Keranjang</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Bukti Pembayaran</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Riwayat Pembayaran</p>
-                    </a>
-                  </li>
-                </ul>
+                  <a href="buktibayar" class="nav-link">
+                      <i class="nav-icon fas fa-edit"></i>
+                    <p>
+                        Bukti Pembayaran
+                      <i class="fas fa-angle-left right"></i>
+                    </p>
+                  </a>
               </li>
+                  
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

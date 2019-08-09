@@ -19,7 +19,10 @@ Route::get('/rumah', 'RumahController@index')->name('rumah');
 Route::get('/list','BarangController@index')->name('list');
 Route::get('/cari','BarangController@cari')->name('cari');
 Route::get('/buku/detail/{id}/detail', 'BarangController@detail');
-Route::post('/keranjang/store', 'KeranjangController@keranjang')->name('keranjang.store');
+Route::post('/cart', 'KeranjangController@store')->name('cart');
+Route::get('/keranjang', 'KeranjangController@index')->name('keranjang');
+Route::post('buktibayar/store', 'BuktiBayarController@store')->name('buktibayar.store');
+Route::post('buktibayar', 'BuktiBayarController@index')->name('buktibayar');
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
@@ -44,4 +47,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/kategori/store', 'KategoriController@store');
     Route::get('admin/kategori/create', 'KategoriController@create')->name('admin.kategori.create');
 
+    Route::get('admin/buktibayar', 'BUktiBayarController@index')->name('admin.buktibayar');
+    Route::get('admin/buktibayar/{id}/edit', 'BUktiBayarController@edit');
+    Route::patch('admin/buktibayar/{id}', 'BUktiBayarController@update');
 });

@@ -87,6 +87,21 @@
 	
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                      <strong>{{session('success')}}</strong>  
+                    </div>
+                  @endif
+                  @if (count($errors)>0)
+                    <div class="alert alert-danger">
+                    <br>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <strong><li>{{$error}}</li></strong> 
+                        @endforeach
+                    </ul>
+                  </div>
+                  @endif
 				<div class="row">
 					<div class="col-sm-9">
 						<div class="navbar-header">
@@ -217,28 +232,92 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($keranjang->user_id == auth()->user()->id && $keranjang->status==1)
+                            @php
+                                $totalBayar = 0;
+                            @endphp
+                           
                             @foreach ($keranjang as $k)
                             <tr>
-                                    @foreach ($buku as $b)
-                                    @if ($b->id == $k->buku_id)
-                                        <td><img src="{{asset('images/'.$k->bukuFoto)}}" style="width: 100%"></td>
-                                        <td>{{$b->bukuNama}}</td>
-                                        <td>{{$b->bukuHarga}}</td>
-                                        <td>{{$k->qty}}</td>
-                                        <td>{{$k->qty}}*{{b->bukuHarga}}</td>
-                                    @endif
-                                        
-                                    @endforeach
+                                <td><img src="{{asset('images/'.$k->buku->bukuFoto)}}" style="width: 20%"></td>
+                                <td>{{$k->buku->bukuNama}}</td>
+                                <td>{{number_format($k->buku->bukuHarga)}}</td>
+                                <td>{{$k->qty}}</td>
+                                <td>{{number_format($k->qty * $k->buku->bukuHarga)}}</td>
+                                @php
+                                    $totalBayar+=$k->qty * $k->buku->bukuHarga;
+                                @endphp
                             </tr>
 
                             @endforeach
-                            @endif
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                    <td colspan="4">Biaya Ongkos Kirim</td>
+                                    <td>{{number_format(15000)}}</td>
+                            </tr>
+                            <tr>
+                                    <td colspan="4">Total Bayar</td>
+                                    <td>
+                                        {{number_format($totalBayar+15000)}}
+                                       </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
+
             </div>
+
         </section> <!--/#cart_items-->
+        <section class="content">
+                
+                <div class="card card-primary">
+                    <div class="card-header">
+                      <h3 class="card-title">Upload Bukti Pembayaran</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form method="post" action="{{route('buktibayar.store')}}" enctype="multipart/form-data">
+                      @csrf
+                      <div class="card-body">
+                        <div class="form-group">
+                          <label for="">Nama Penerima</label>
+                          <input type="text" class="form-control" id="namaPenerima" name="namaPenerima" placeholder="Nama Penerima">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Alamat Lengkap (Kabupaten,Kecamatan,&Kota)</label>
+                            <textarea name="alamatTujuan" id="alamatTujuan" cols="30" rows="10" placeholder="alamat tujuan"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="">Nomor Telepon</label>
+                                <input type="number" class="form-control" id="noHp" name="noHp" placeholder="Nama Telepon Penerima">
+                            </div>
+                            <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Total Tagihan</label>
+                                        <div class="input-group">
+                                            <input type="numeric" class="form-control" id="totalTagihan" name="totalTagihan" value="{{$totalBayar+15000}}">
+                                            <div class="input-group-append">
+                                            </div>
+                                          </div>
+                                      </div>
+                            </div>
+                        </div>
+                        <div>
+                                <label for="">Upload Foto Bukti Pembayaran</label>
+                                <div class="input-group">
+                                    <input type="file" class="custom-file-input" id="fotoBukti" name="fotoBukti">
+                                    <label class="custom-file-label" >Choose file</label>
+                                </div>
+                        </div>
+                      <!-- /.card-body -->
+                      <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="reset" value="Reset" class="btn btn-default float-right">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                  <br>
 	
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
