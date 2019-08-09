@@ -32,6 +32,7 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
+								INI INDEKS
 								<li><a href="#"><i class="fa fa-phone"></i> +62 85724371751</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> Malobo.com</a></li>
 							</ul>
@@ -57,7 +58,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-								<a href="{{ url('/rumah') }}"><img src="{{asset('images/logo.png')}}" alt="" /></a>
+							<a href="{{asset('home2/index.html')}}"><img src="images/home/logo.png" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -66,7 +67,7 @@
                              
                                 @if (Route::has('login'))
                                     @auth
-                                    <li><a href="{{ url('/rumah') }}"><i class="fa fa-user"></i> Home</a></li>
+                                    <li><a href="{{ url('/home') }}"><i class="fa fa-user"></i> Home</a></li>
                                 @else
                                     <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Login</a></li>
 
@@ -76,7 +77,7 @@
                                 @endauth
                                 @endif
                                 <li><a href="{{asset('home2/cart.html')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                                <li><a href="{{asset('home2/checkout.html')}}"><i class="fa fa-money"></i> Pembayaran</a></li>
+                                <li><a href="{{asset('home2/checkout.html')}}"><i class="fa fa-receipt"></i> Pembayaran</a></li>
 
 							</ul>
 						</div>
@@ -100,10 +101,13 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.html" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Buku<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="{{route('list')}}">Semua Buku</a></li>
+                                        <li><a href="{{asset('home2/shop.html')}}">Products</a></li>
+										<li><a href="{{asset('home2/product-details.html')}}">Product Details</a></li> 
+										<li><a href="{{asset('home2/checkout.html')}}">Checkout</a></li> 
 										<li><a href="{{asset('home2/cart.html')}}">Cart</a></li> 
+										<li><a href="{{asset('home2/login.html')}}">Login</a></li> 
                                     </ul>
                                 </li> 
 								<li class="dropdown"><a href="#">Kategori<i class="fa fa-angle-down"></i></a>
@@ -111,6 +115,9 @@
 											@foreach ($kategori as $k)
 											<li><a href="">{{($k->kategoriNama)}}</a></li>
 											@endforeach
+
+                                        <li><a href="{{asset('home2/blog.html')}}">Blog List</a></li>
+										<li><a href="{{asset('home2/blog-single.html')}}">Blog Single</a></li>
                                     </ul>
                                 </li> 
 								{{-- <li><a href="{{asset('home2/404.html')}}">404</a></li> --}}
@@ -140,42 +147,45 @@
 						</ol>
 						
 						<div class="carousel-inner">
-								<div class="item active">
-									<div class="col-sm-6">
-										<h1><span>MaLoBo</span>BookStore</h1>
-										<h2>A Lovely Book For A Lovely One</h2>
-										<p>Malobo adalah toko buku online yang menjual berbagai jenis buku spesial untuk kamu yang spesial &#9829; </p>
-											<button type="button" class="btn btn-default get" href="{{ url('/rumah') }}">Dapatkan Sekarang !</button></button>					
-									</div>
-									<div class="col-sm-6">
-										<img src="{{asset('home2/images/home/girl1.jpg')}}" class="girl img-responsive" alt="" />
-									</div>
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>Free E-Commerce Template</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
 								</div>
-								<div class="item">
-									<div class="col-sm-6">
-											<h1><span>MaLoBo</span>BookStore</h1>
-											<h2>A Lovely Book For A Lovely One</h2>
-											<p>Malobo selalu menyediakan buku yang berkualitas untuk kamu yang tercinta &#9829; </p>
-											<button type="button" class="btn btn-default get" href="{{ url('/rumah') }}">Dapatkan Sekarang !</button></button>
-									</div>
-									<div class="col-sm-6">
-										<img src="{{asset('home2/images/home/girl2.jpg')}}" class="girl img-responsive" alt="" />
-									</div>
+								<div class="col-sm-6">
+									<img src={{asset('home2/images/home/girl1.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('home2/images/home/pricing.png')}}"  class="pricing" alt="" />
 								</div>
-								
-								<div class="item">
-									<div class="col-sm-6">
-											<h1><span>MaLoBo</span>BookStore</h1>
-											<h2>A Lovely Book For A Lovely One</h2>
-											<p>Malobo adalah salah satu toko buku online terpecaya yang menyediakan kebutuhan buku untuk kamu yang tercinta &#9829; </p>
-											<button type="button" class="btn btn-default get" href="{{ url('/rumah') }}">Dapatkan Sekarang !</button></button>
-									</div>
-									<div class="col-sm-6">
-										<img src="{{asset('home2/images/home/girl3.jpg')}}" class="girl img-responsive" alt="" />
-									</div>
-								</div>
-								
 							</div>
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>100% Responsive Design</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="{{asset('home2/images/home/girl2.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('home2/images/home/pricing.png')}}"  class="pricing" alt="" />
+								</div>
+							</div>
+							
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>E</span>-SHOPPER</h1>
+									<h2>Free Ecommerce Template</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="{{asset('home2/images/home/girl3.jpg')}}" class="girl img-responsive" alt="" />
+									<img src="{{asset('home2/images/home/pricing.png')}}" class="pricing" alt="" />
+								</div>
+							</div>
+							
+						</div>
 						
 						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
 							<i class="fa fa-angle-left"></i>
@@ -240,26 +250,20 @@
 											<img src="{{asset('images/'.$b->bukuFoto)}}" width="600px" height="300px">
 											<h2>Rp.{{$b->bukuHarga}}</h2>
 											<p>{{$b->bukuNama}}</p>
-											<form action="{{route('detail')}}" method="GET">
-													<input type="numeric" name="id" value="{{$b->id}}">
-													<button class="btn btn-light" type="submit"><i class="fa fa-shopping-cart"></i>Add to Cart</button>
-											</form>
-											<br>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2>Rp.{{$b->bukuHarga}}</h2>
 												<p>{{$b->bukuNama}}</p>
-												<form action="{{route('detail')}}" method="GET">
-														<input type="numeric" name="id" value="{{$b->id}}">
-														<button class="btn btn-light" type="submit"><i class="fa fa-shopping-cart"></i>Add to Cart</button>
-												</form>
-												<br>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
 							</div>
@@ -287,7 +291,7 @@
 												<img src="images/home/gallery1.jpg" alt="" />
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="{{ url('/buku/detail'.$b->id.'/detail') }}"><button type="button" class="btn btn-success" style="text-align:center"><i class="fa fa-shopping-cart"></i>Add to Cart</button></a>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 											
 										</div>
@@ -300,7 +304,7 @@
 												<img src="images/home/gallery2.jpg" alt="" />
 												<h2>$56</h2>
 												<p>Easy Polo Black Edition</p>
-												<a href="{{ url('/buku/detail'.$b->id.'/detail') }}"><button type="button" class="btn btn-success" style="text-align:center"><i class="fa fa-shopping-cart"></i>Add to Cart</button></a>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 											
 										</div>
@@ -562,21 +566,86 @@
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="item active">	
-										@foreach ($buku as $b)
-										<div class="col-sm-4">
-												<div class="product-image-wrapper">
-													<div class="single-products">
-														<div class="productinfo text-center">
-																<img src="{{asset('images/'.$b->bukuFoto)}}" width="400px" height="200px">
-															<h2>Rp.{{$b->bukuHarga}}</h2>
-																	<p>{{$b->bukuNama}}</p>
-															<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-														</div>
-														
-													</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend1.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
+												
 											</div>
-										@endforeach
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend2.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend3.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">	
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend1.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend2.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="product-image-wrapper">
+											<div class="single-products">
+												<div class="productinfo text-center">
+													<img src="images/home/recommend3.jpg" alt="" />
+													<h2>$56</h2>
+													<p>Easy Polo Black Edition</p>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+												
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
@@ -754,4 +823,4 @@
             </div>
         </div>
     </body>
-</html> --}}
+</html>--}

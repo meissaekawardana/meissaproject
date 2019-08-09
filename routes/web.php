@@ -15,12 +15,19 @@ Route::get('/', 'AwalController@index');
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/rumah', 'RumahController@index')->name('rumah');
+Route::get('/list','BarangController@index')->name('list');
+Route::get('/cari','BarangController@cari')->name('cari');
+Route::get('/buku/detail/{id}/detail', 'BarangController@detail');
+Route::post('/keranjang/store', 'KeranjangController@keranjang')->name('keranjang.store');
+
+
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 Route::group(['middleware' => 'admin'], function () {
     // home
-    Route::get('admin/routes', 'HomeController@admin');
+    Route::get('admin/routes', 'RumahController@admin');
     // buku
     Route::get('admin/buku', 'BukuController@index')->name('admin.buku');
     Route::get('admin/buku/{id}/edit', 'BukuController@edit');
