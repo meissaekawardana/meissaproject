@@ -159,7 +159,7 @@
                                 </div>    
                             </div>
                             <div class="col-sm-7">
-                                $bukuId={{$buku->id}}
+                                {{-- $bukuId={{$buku->id}} --}}
                                 <div class="product-information"><!--/product-information-->
                                     <img src="images/product-details/new.jpg" class="newarrival" alt="" />
                                     <h2>{{$buku->bukuNama}}</h2>

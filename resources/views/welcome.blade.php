@@ -66,7 +66,30 @@
                              
                                 @if (Route::has('login'))
                                     @auth
-                                    <li><a href="{{ url('/rumah') }}"><i class="fa fa-user"></i> Home</a></li>
+									
+										@if (\Auth::user()->id==1)
+											<li><a href="{{ url('/rumah') }}"><i class="fa fa-user"></i> Home</a></li>
+										@else
+											<li><a href="{{ url('/admin/buku') }}"><i class="fa fa-user"></i> Home</a></li>
+										@endif
+										
+									<li class="nav-item dropdown">
+										<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+											{{ Auth::user()->name }} <span class="caret"></span>
+										</a>
+		
+										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+											<a class="dropdown-item" href="{{ route('logout') }}"
+											   onclick="event.preventDefault();
+															 document.getElementById('logout-form').submit();">
+												{{ __('Logout') }}
+											</a>
+		
+											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+												@csrf
+											</form>
+										</div>
+									</li>
                                 @else
                                     <li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Login</a></li>
 
@@ -74,7 +97,9 @@
                                     <li><a href="{{ route('login') }}"><i class="fa fa-paste"></i> Register</a></li>
                                 @endif
                                 @endauth
-                                @endif
+								@endif
+								
+								
                                 <li><a href="{{asset('home2/cart.html')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                                 <li><a href="{{asset('home2/checkout.html')}}"><i class="fa fa-money"></i> Pembayaran</a></li>
 
@@ -99,7 +124,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
+								<li><a href="{{ url('/rumah') }}">Home</a></li>
 								<li class="dropdown"><a href="#">Buku<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="{{route('list')}}">Semua Buku</a></li>
